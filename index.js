@@ -1,4 +1,5 @@
 //
+const keep_alive = require('./keep_alive.js')
 const TelegramBot = require('node-telegram-bot-api');
 const https = require('https')
 const fs = require('fs');
