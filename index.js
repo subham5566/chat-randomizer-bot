@@ -108,23 +108,7 @@ bot.on('message', async (msg) => {
 						fs.unlinkSync(file_path);
 					});
  				});
-			}
-			else if (msg.photo) { // Photos
-				bot.getFileLink(msg.photo[msg.photo.length - 1].file_id).then(async(fileUri) => {
-					let time = process.hrtime();
-					let newName = `${time[0]}${time[1]}.${fileUri.split('.').pop()}`;
-
-					let file_path = `${Config.download_dir}/${newName}`;
-					let file = fs.createWriteStream(file_path);
-					await https.get(fileUri, (response) => {
-						response.pipe(file);
-					});
-					file.on('finish', async () => {
-						await bot.sendPhoto(user.getPartner(), file_path);
-						fs.unlinkSync(file_path);
-					});
- 				});
-			}
+									      }
 			else if(msg.text) bot.sendMessage(user.getPartner(), msg.text);
 		}
 	}
