@@ -90,9 +90,6 @@ bot.on('message', async (msg) => {
 			if(msg.document) {
 				bot.sendMessage(user_id, Language.ERROR_SEND_FILE, {parse_mode : 'Markdown'});
 			}
-			else if (msg.sticker) { // Sticker
-				bot.sendSticker(user.getPartner(), msg.sticker.file_id);
-			}
 			else if (msg.voice) { // Voice				
 				bot.getFileLink(msg.voice.file_id).then(async(fileUri) => {
 					let time = process.hrtime();
